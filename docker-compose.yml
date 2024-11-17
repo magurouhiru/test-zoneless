@@ -1,0 +1,15 @@
+services:
+  server:
+    image: nginx
+    container_name: test-zoneless-nginx-container
+    ports:
+      - "4211:4211"
+      - "4212:4212"
+    volumes:
+      - type: bind
+        source: ./dist
+        target: /usr/share/nginx/html/dist
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+
