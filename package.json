@@ -9,7 +9,9 @@
     "build": "npm-run-all -p build:*",
     "build:zone": "ng build test-zoneless_zone",
     "build:zoneless": "ng build test-zoneless_zoneless",
-    "watch": "ng build --watch --configuration development",
+    "watch": "npm-run-all -p watch:*",
+    "watch:zone": "ng build test-zoneless_zone --watch",
+    "watch:zoneless": "ng build test-zoneless_zoneless --watch",
     "test": "ng test"
   },
   "private": true,
