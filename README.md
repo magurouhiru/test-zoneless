@@ -31,3 +31,6 @@ http://localhost:4211
 
 ↓zoneless  
 http://localhost:4212
+
+↓どちらにもいけるリンク付きのページ  
+http://localhost:8080
