@@ -14,11 +14,14 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CntService } from '../cnt.service';
+import { NgIf } from '@angular/common';
+import { interval, take } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-signal-base',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './signal-base.component.html',
   styleUrl: './signal-base.component.scss',
 })
@@ -36,6 +39,15 @@ export class SignalBaseComponent
   cntService = inject(CntService);
   // インプット
   title = input.required<string>();
+
+  flag = signal(true);
+  changeFlag() {
+    this.flag.update((v) => !v);
+  }
+
+  interval = interval(1000).pipe(take(5));
+  v = toSignal(this.interval);
+
   // ライフサイクル監視
   ngOnChanges(changes: SimpleChanges) {}
   ngOnInit() {
@@ -59,10 +71,5 @@ export class SignalBaseComponent
   }
   ngOnDestroy() {
     this.cntService.addOnDestroy(this.title());
-  }
-
-  flag = signal(true);
-  changeFlag() {
-    this.flag.update((v) => !v);
   }
 }

@@ -13,11 +13,13 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CntService } from '../cnt.service';
+import { NgIf } from '@angular/common';
+import { interval, take } from 'rxjs';
 
 @Component({
   selector: 'app-no-signal-base',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './no-signal-base.component.html',
   styleUrl: './no-signal-base.component.scss',
 })
@@ -35,6 +37,25 @@ export class NoSignalBaseComponent
   cntService = inject(CntService);
   // インプット
   @Input() title = '';
+
+  flag = true;
+  changeFlag() {
+    this.flag = !this.flag;
+  }
+
+  interval = interval(1000).pipe(take(5));
+  v = 0;
+  constructor() {
+    this.interval.subscribe({
+      next: (v) => {
+        console.log(v);
+        this.v = v;
+      },
+      error: console.error,
+      complete: () => console.log('complete'),
+    });
+  }
+
   // ライフサイクル監視
   ngOnChanges(changes: SimpleChanges) {}
   ngOnInit() {
@@ -58,10 +79,5 @@ export class NoSignalBaseComponent
   }
   ngOnDestroy() {
     this.cntService.addOnDestroy(this.title);
-  }
-
-  flag = true;
-  changeFlag() {
-    this.flag = !this.flag;
   }
 }
