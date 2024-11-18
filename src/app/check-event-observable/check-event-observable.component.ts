@@ -6,7 +6,7 @@ import { NoSignal01Component } from './no-signal-01/no-signal-01.component';
   selector: 'app-display-all',
   standalone: true,
   imports: [Signal01Component, NoSignal01Component],
-  templateUrl: './check-event-async.component.html',
-  styleUrl: './check-event-async.component.scss',
+  templateUrl: './check-event-observable.component.html',
+  styleUrl: './check-event-observable.component.scss',
 })
-export class CheckEventAsyncComponent {}
+export class CheckEventObservableComponent {}
