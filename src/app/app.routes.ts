@@ -7,7 +7,7 @@ export const routes: Routes = [
     component: CheckEventObservableComponent,
   },
   {
-    path: 'check-event-async',
+    path: 'check-event-observable',
     component: CheckEventObservableComponent,
   },
 ];
