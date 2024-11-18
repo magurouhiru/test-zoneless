@@ -12,7 +12,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { CntService } from '../cnt.service';
+import { CntService } from '../../cnt.service';
 import { interval, take } from 'rxjs';
 
 @Component({

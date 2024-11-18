@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
-import { DisplayAllComponent } from './display-all/display-all.component';
+import { CheckEventAsyncComponent } from './check-event-async/check-event-async.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: DisplayAllComponent,
+    component: CheckEventAsyncComponent,
+  },
+  {
+    path: 'check-event-async',
+    component: CheckEventAsyncComponent,
   },
 ];
