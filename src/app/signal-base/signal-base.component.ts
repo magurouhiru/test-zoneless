@@ -36,61 +36,41 @@ export class SignalBaseComponent
   // インプット
   title = input.required<string>();
   // ライフサイクル監視
-  cntObj = signal(getCntObj());
-  print = effect(() => {
-    console.table(this.cntObj);
-  });
   ngOnChanges(changes: SimpleChanges) {
-    this.cntObj.update((v) => {
-      v.cntOnChanges++;
-      return { ...v };
-    });
+    cntObj.cntOnChanges++;
+    console.table(cntObj);
   }
   ngOnInit() {
-    this.cntObj.update((v) => {
-      v.cntOnInit++;
-      return { ...v };
-    });
+    cntObj.label = this.title();
+    cntObj.cntOnInit++;
+    console.table(cntObj);
   }
   ngDoCheck() {
-    this.cntObj.update((v) => {
-      v.cntDoCheck++;
-      return { ...v };
-    });
+    cntObj.cntDoCheck++;
+    console.table(cntObj);
   }
   ngAfterContentInit() {
-    this.cntObj.update((v) => {
-      v.cntAfterContentInit++;
-      return { ...v };
-    });
+    cntObj.cntAfterContentInit++;
+    console.table(cntObj);
   }
   ngAfterContentChecked() {
-    this.cntObj.update((v) => {
-      v.cntAfterContentChecked++;
-      return { ...v };
-    });
+    cntObj.cntAfterContentChecked++;
+    console.table(cntObj);
   }
   ngAfterViewInit() {
-    this.cntObj.update((v) => {
-      v.cntAfterViewInit++;
-      return { ...v };
-    });
+    cntObj.cntAfterViewInit++;
+    console.table(cntObj);
   }
   ngAfterViewChecked() {
-    this.cntObj.update((v) => {
-      v.cntAfterViewChecked++;
-      return { ...v };
-    });
+    cntObj.cntAfterViewChecked++;
+    console.table(cntObj);
   }
-  ngOnDestroy() {
-    this.cntObj.update((v) => {
-      v.cntOnDestroy++;
-      return { ...v };
-    });
-  }
+  ngOnDestroy() {}
 
   flag = signal(true);
   changeFlag() {
     this.flag.update((v) => !v);
   }
 }
+
+const cntObj = getCntObj();

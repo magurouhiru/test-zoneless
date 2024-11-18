@@ -34,45 +34,41 @@ export class NoSignalBaseComponent
   // インプット
   @Input() title = '';
   // ライフサイクル監視
-  cntObj = getCntObj();
-  print = () => {
-    console.table(this.cntObj);
-  };
   ngOnChanges(changes: SimpleChanges) {
-    this.cntObj.cntOnChanges++;
-    this.print();
+    cntObj.cntOnChanges++;
+    console.table(cntObj);
   }
   ngOnInit() {
-    this.cntObj.cntOnInit++;
-    this.print();
+    cntObj.label = this.title;
+    cntObj.cntOnInit++;
+    console.table(cntObj);
   }
   ngDoCheck() {
-    this.cntObj.cntDoCheck++;
-    this.print();
+    cntObj.cntDoCheck++;
+    console.table(cntObj);
   }
   ngAfterContentInit() {
-    this.cntObj.cntAfterContentInit++;
-    this.print();
+    cntObj.cntAfterContentInit++;
+    console.table(cntObj);
   }
   ngAfterContentChecked() {
-    this.cntObj.cntAfterContentChecked++;
-    this.print();
+    cntObj.cntAfterContentChecked++;
+    console.table(cntObj);
   }
   ngAfterViewInit() {
-    this.cntObj.cntAfterViewInit++;
-    this.print();
+    cntObj.cntAfterViewInit++;
+    console.table(cntObj);
   }
   ngAfterViewChecked() {
-    this.cntObj.cntAfterViewChecked++;
-    this.print();
+    cntObj.cntAfterViewChecked++;
+    console.table(cntObj);
   }
-  ngOnDestroy() {
-    this.cntObj.cntOnDestroy++;
-    this.print();
-  }
+  ngOnDestroy() {}
 
   flag = true;
   changeFlag() {
     this.flag = !this.flag;
   }
 }
+
+const cntObj = getCntObj();

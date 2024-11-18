@@ -1,4 +1,5 @@
 export interface CntObj {
+  label?: string;
   cntOnChanges: number;
   cntOnInit: number;
   cntDoCheck: number;
