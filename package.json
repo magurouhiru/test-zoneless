@@ -1,12 +1,13 @@
 {
   "name": "test-zoneless",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "npm-run-all -p start:*",
     "start:zone": "ng serve test-zoneless_zone --port 4201",
     "start:zoneless": "ng serve test-zoneless_zoneless --port 4202",
-    "build": "npm-run-all -s build:all tool:move_file",
+    "build": "npm-run-all -s build:all tool:move_file tool:replace_index.html",
     "build:all": "npm-run-all -p build:zone build:zoneless",
     "build:zone": "ng build test-zoneless_zone",
     "build:zoneless": "ng build test-zoneless_zoneless",
@@ -15,7 +16,8 @@
     "watch:zoneless": "ng build test-zoneless_zoneless --watch",
     "test": "ng test",
     "fmt": "prettier --write src tool",
-    "tool:move_file": "tsx tool/copy_file.ts"
+    "tool:move_file": "tsx tool/copy_file.ts",
+    "tool:replace_index.html": "tsx tool/replace_index.html.ts"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +38,7 @@
     "@angular/cli": "^18.2.1",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
+    "execa": "^9.5.1",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -44,7 +47,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
-    "tsx": "^4.19.2",
+    "tsx": "^4.16.5",
     "typescript": "~5.5.2"
   }
 }
