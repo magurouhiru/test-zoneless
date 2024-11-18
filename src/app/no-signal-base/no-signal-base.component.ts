@@ -13,13 +13,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CntService } from '../cnt.service';
-import { NgIf } from '@angular/common';
 import { interval, take } from 'rxjs';
 
 @Component({
   selector: 'app-no-signal-base',
   standalone: true,
-  imports: [NgIf],
+  imports: [],
   templateUrl: './no-signal-base.component.html',
   styleUrl: './no-signal-base.component.scss',
 })
@@ -44,12 +43,11 @@ export class NoSignalBaseComponent
   }
 
   interval = interval(1000).pipe(take(5));
-  v = 0;
+  value = 0;
   constructor() {
     this.interval.subscribe({
       next: (v) => {
-        console.log(v);
-        this.v = v;
+        this.value = v;
       },
       error: console.error,
       complete: () => console.log('complete'),

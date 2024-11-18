@@ -14,14 +14,13 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CntService } from '../cnt.service';
-import { NgIf } from '@angular/common';
 import { interval, take } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-signal-base',
   standalone: true,
-  imports: [NgIf],
+  imports: [],
   templateUrl: './signal-base.component.html',
   styleUrl: './signal-base.component.scss',
 })
@@ -46,7 +45,7 @@ export class SignalBaseComponent
   }
 
   interval = interval(1000).pipe(take(5));
-  v = toSignal(this.interval);
+  value = toSignal(this.interval);
 
   // ライフサイクル監視
   ngOnChanges(changes: SimpleChanges) {}

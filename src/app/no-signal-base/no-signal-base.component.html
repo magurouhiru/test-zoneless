@@ -1,8 +1,13 @@
-<p>no-signal-base works!</p>
-<p>{{ title }}</p>
 <fieldset>
-  <input type="button" (click)="changeFlag()" />
-  <output>{{ flag }}</output>
-  <ng-container *ngIf="flag">asdf</ng-container>
-  {{ v }}
+  <legend>no-signal-base contents</legend>
+  parent component：{{ title }}
+  <fieldset>
+    <legend>check click event</legend>
+    <button (click)="changeFlag()">click!</button><br />
+    flag: {{ flag }}
+  </fieldset>
+  <fieldset>
+    <legend>check async change</legend>
+    value: {{ value }}<br />
+  </fieldset>
 </fieldset>
