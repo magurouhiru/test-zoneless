@@ -1,0 +1,13 @@
+<fieldset>
+  <legend>no-signal-base contents</legend>
+  parent component：{{ title() }}
+  <fieldset>
+    <legend>check click event</legend>
+    <button (click)="changeFlag()">click!</button><br />
+    flag(): {{ flag() }}
+  </fieldset>
+  <fieldset>
+    <legend>check observable change</legend>
+    value: {{ value() }}<br />
+  </fieldset>
+</fieldset>

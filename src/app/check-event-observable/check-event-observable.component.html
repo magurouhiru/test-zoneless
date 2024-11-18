@@ -1,0 +1,57 @@
+<fieldset>
+  <legend>check-event-observable contents</legend>
+  <h3>簡単なまとめ</h3>
+  <ul>
+    <li>通常(zone あり)</li>
+    <ul>
+      <li>click event</li>
+      <ul>
+        <li>全体に影響する。更新された値も表示される。</li>
+      </ul>
+      <li>observable change</li>
+      <ul>
+        <li>全体に影響する。更新された値も表示される。</li>
+      </ul>
+    </ul>
+    <li>zoneless</li>
+    <ul>
+      <li>click event</li>
+      <ul>
+        <li>全体に影響する。更新された値も表示される。</li>
+      </ul>
+      <li>observable change</li>
+      <ul>
+        <li>
+          全体に影響しない。signal
+          を使用していれば更新された値が表示される。していれば表示に変化なし。
+        </li>
+        <li>
+          内部の値は変わっているので、click event でDoCheck
+          以降がトリガーされれば、更新された値が表示される。
+        </li>
+        <li>npm run start で実行時にはRuntimeError: NG0100 が表示される。</li>
+      </ul>
+    </ul>
+  </ul>
+  <h3>簡単な説明</h3>
+  コンポーネントは以下のような入れ子構造となっている。
+  <pre>
+    check-event-observable.component
+      ├─ no-signal-01.component
+      │     ├─ no-signal-base.component
+      │     └─ no-signal-02.component
+      │           └─ no-signal-base.component
+      └─ signal-01.component
+            ├─ signal-base.component
+            └─ signal-02.component
+                  └─ signal-base.component
+  </pre>
+  (no-)signal-base.component には以下の機能がある。
+  <ul>
+    <li>click event：押すとflag の真偽値が反転するボタンとflag の値表示。</li>
+    <li>Observable change：interval(1000).pipe(take(5)) の値表示。</li>
+    <li>ライフサイクルメソッドの発火回数表示。(console)</li>
+  </ul>
+  <app-no-signal-01></app-no-signal-01>
+  <app-signal-01></app-signal-01>
+</fieldset>
