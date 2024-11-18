@@ -5,7 +5,7 @@ import {
   AfterViewInit,
   Component,
   DoCheck,
-  effect,
+  inject,
   input,
   OnChanges,
   OnDestroy,
@@ -13,7 +13,7 @@ import {
   signal,
   SimpleChanges,
 } from '@angular/core';
-import { getCntObj } from '../if';
+import { CntService } from '../cnt.service';
 
 @Component({
   selector: 'app-signal-base',
@@ -33,44 +33,36 @@ export class SignalBaseComponent
     AfterViewChecked,
     OnDestroy
 {
+  cntService = inject(CntService);
   // インプット
   title = input.required<string>();
   // ライフサイクル監視
-  ngOnChanges(changes: SimpleChanges) {
-    cntObj.cntOnChanges++;
-    console.table(cntObj);
-  }
+  ngOnChanges(changes: SimpleChanges) {}
   ngOnInit() {
-    cntObj.label = this.title();
-    cntObj.cntOnInit++;
-    console.table(cntObj);
+    this.cntService.setData(this.title());
+    this.cntService.addOnInit(this.title());
   }
   ngDoCheck() {
-    cntObj.cntDoCheck++;
-    console.table(cntObj);
+    this.cntService.addDoCheck(this.title());
   }
   ngAfterContentInit() {
-    cntObj.cntAfterContentInit++;
-    console.table(cntObj);
+    this.cntService.addAfterContentInit(this.title());
   }
   ngAfterContentChecked() {
-    cntObj.cntAfterContentChecked++;
-    console.table(cntObj);
+    this.cntService.addAfterContentChecked(this.title());
   }
   ngAfterViewInit() {
-    cntObj.cntAfterViewInit++;
-    console.table(cntObj);
+    this.cntService.addAfterViewInit(this.title());
   }
   ngAfterViewChecked() {
-    cntObj.cntAfterViewChecked++;
-    console.table(cntObj);
+    this.cntService.addAfterViewChecked(this.title());
   }
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.cntService.addOnDestroy(this.title());
+  }
 
   flag = signal(true);
   changeFlag() {
     this.flag.update((v) => !v);
   }
 }
-
-const cntObj = getCntObj();
