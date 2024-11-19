@@ -19,6 +19,7 @@ jobs:
           node-version: 20.x
           cache: "npm"
       - run: npm ci
+      - run: npm ls
       - run: npm run fmt
       - run: npm run build:zone
       - run: npm run build:zoneless
