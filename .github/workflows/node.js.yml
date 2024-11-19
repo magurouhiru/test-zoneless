@@ -20,5 +20,6 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run fmt
-      - run: npm run build
+      - run: npm run build:zone
+      - run: npm run build:zoneless
 #      - run: npm test
