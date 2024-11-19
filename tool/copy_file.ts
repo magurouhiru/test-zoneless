@@ -1,17 +1,22 @@
 import * as fs from 'node:fs';
 import * as constants from 'node:constants';
 
-const dist = './dist/';
+const browser = 'browser/';
 
 const copyFile = (project: string) => {
-  fs.promises.readdir(project).then((value) => {
+  fs.promises.readdir(project + browser).then((value) => {
     value.forEach((v) =>
-      fs.copyFile(project + v, dist + v, constants.COPYFILE_EXCL, () => {}),
+      fs.copyFile(
+        project + browser + v,
+        project + v,
+        constants.COPYFILE_EXCL,
+        console.log,
+      ),
     );
   });
 };
 
-const zone = './dist/test-zoneless_zone/browser/';
-const zoneless = './dist/test-zoneless_zoneless/browser/';
+const zone = './dist/zone/';
+const zoneless = './dist/zoneless/';
 copyFile(zone);
 copyFile(zoneless);

@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/test-zoneless_zone",
+            "outputPath": "dist/zone",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -112,7 +112,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/test-zoneless_zoneless",
+            "outputPath": "dist/zoneless",
             "index": "src/index.html",
             "browser": "src/main.zoneless.ts",
             "polyfills": [
