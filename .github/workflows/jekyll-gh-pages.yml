@@ -33,8 +33,8 @@ jobs:
           node-version: 20.x
           cache: "npm"
       - run: npm ci
-      - run: npm run build:zone
-      - run: npm run build:zoneless
+      - run: npm run build:--base-href:zone
+      - run: npm run build:--base-href:zoneless
       - run: npm run tool:move_file
       - run: npm run tool:replace_index.html
       - name: Upload artifact
