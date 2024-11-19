@@ -21,8 +21,8 @@ jobs:
       - run: npm ci
       - run: npm ls
       - run: npm run fmt
-      - run: npm run build:--base-href:zone
-      - run: npm run build:--base-href:zoneless
+      - run: npm run build:zone
+      - run: npm run build:zoneless
       - run: npm run tool:move_file
       - run: npm run tool:replace_index.html
 #      - run: npm test

@@ -12,4 +12,4 @@ services:
         target: /etc/nginx/nginx.conf
       - type: bind
         source: ./dist
-        target: /usr/share/nginx/html/dist
+        target: /usr/share/nginx/html/test-zoneless
