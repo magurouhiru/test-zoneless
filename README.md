@@ -2,7 +2,7 @@
 
 ## 概要
 Angular のZoneless を試すためのリポジトリです。  
-通常(withZone) ありとZoneless とを比較することができます。  
+通常(withZone) とZoneless とを比較することができます。  
 Zoneless については以下を参照ください。  
 
 https://angular.dev/guide/experimental/zoneless
