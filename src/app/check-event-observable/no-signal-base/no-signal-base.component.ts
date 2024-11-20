@@ -33,9 +33,10 @@ export class NoSignalBaseComponent
     AfterViewChecked,
     OnDestroy
 {
-  cntService = inject(CntService);
+  name = 'no-signal-base';
+  label = '';
   // インプット
-  @Input() title = '';
+  @Input() parentName = '';
 
   flag = true;
   changeFlag() {
@@ -55,27 +56,29 @@ export class NoSignalBaseComponent
   }
 
   // ライフサイクル監視
+  cntService = inject(CntService);
   ngOnChanges(changes: SimpleChanges) {}
   ngOnInit() {
-    this.cntService.setData(this.title);
-    this.cntService.addOnInit(this.title);
+    this.label = this.name + ':' + this.parentName;
+    this.cntService.setData(this.label);
+    this.cntService.addOnInit(this.label);
   }
   ngDoCheck() {
-    this.cntService.addDoCheck(this.title);
+    this.cntService.addDoCheck(this.label);
   }
   ngAfterContentInit() {
-    this.cntService.addAfterContentInit(this.title);
+    this.cntService.addAfterContentInit(this.label);
   }
   ngAfterContentChecked() {
-    this.cntService.addAfterContentChecked(this.title);
+    this.cntService.addAfterContentChecked(this.label);
   }
   ngAfterViewInit() {
-    this.cntService.addAfterViewInit(this.title);
+    this.cntService.addAfterViewInit(this.label);
   }
   ngAfterViewChecked() {
-    this.cntService.addAfterViewChecked(this.title);
+    this.cntService.addAfterViewChecked(this.label);
   }
   ngOnDestroy() {
-    this.cntService.addOnDestroy(this.title);
+    this.cntService.addOnDestroy(this.label);
   }
 }

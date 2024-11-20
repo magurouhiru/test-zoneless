@@ -9,5 +9,5 @@ import { SignalBaseComponent } from '../signal-base/signal-base.component';
   styleUrl: './signal-02.component.scss',
 })
 export class Signal02Component {
-  title = 'signal-02';
+  name = 'signal-02';
 }

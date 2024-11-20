@@ -10,5 +10,5 @@ import { NoSignal02Component } from '../no-signal-02/no-signal-02.component';
   styleUrl: './no-signal-01.component.scss',
 })
 export class NoSignal01Component {
-  title = 'no-signal-01';
+  name = 'no-signal-01';
 }

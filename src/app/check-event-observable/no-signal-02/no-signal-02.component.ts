@@ -9,5 +9,5 @@ import { NoSignalBaseComponent } from '../no-signal-base/no-signal-base.componen
   styleUrl: './no-signal-02.component.scss',
 })
 export class NoSignal02Component {
-  title = 'no-signal-02';
+  name = 'no-signal-02';
 }
