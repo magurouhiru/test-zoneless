@@ -31,7 +31,7 @@ http://localhost:8080/test-zoneless/
 withZone とZoneless の両方が`ng build --watch`されます。   
 docker compose の環境があれば、`docker-compose up`でサーブしてくれます。  
 以下をブラウザで開いて比較してください。  
-↓withZone
+↓withZone  
 http://localhost:4211
 
 ↓Zoneless  
