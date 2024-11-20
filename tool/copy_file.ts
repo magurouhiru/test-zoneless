@@ -16,7 +16,7 @@ const copyFile = (project: string) => {
   });
 };
 
-const zone = './dist/zone/';
+const withZone = './dist/with-zone/';
 const zoneless = './dist/zoneless/';
-copyFile(zone);
+copyFile(withZone);
 copyFile(zoneless);

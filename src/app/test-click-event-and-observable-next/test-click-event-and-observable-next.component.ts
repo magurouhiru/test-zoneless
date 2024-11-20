@@ -11,17 +11,18 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CntService } from './cnt.service';
+import { Signal01Component } from './signal-01/signal-01.component';
+import { NoSignal01Component } from './no-signal-01/no-signal-01.component';
+import { CntService } from '../cnt.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-display-all',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  imports: [Signal01Component, NoSignal01Component],
+  templateUrl: './test-click-event-and-observable-next.component.html',
+  styleUrl: './test-click-event-and-observable-next.component.scss',
 })
-export class AppZonelessComponent
+export class TestClickEventAndObservableNextComponent
   implements
     OnChanges,
     OnInit,
@@ -32,7 +33,7 @@ export class AppZonelessComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'TestZoneless:Zoneless';
+  name = 'test-click-event-and-observable-next';
   label = '';
 
   // ライフサイクル監視

@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
-import { CheckEventObservableComponent } from './check-event-observable/check-event-observable.component';
+import { TestClickEventAndObservableNextComponent } from './test-click-event-and-observable-next/test-click-event-and-observable-next.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: CheckEventObservableComponent,
+    component: TestClickEventAndObservableNextComponent,
   },
   {
-    path: 'check-event-observable',
-    component: CheckEventObservableComponent,
+    path: 'test-click-event-and-observable-next',
+    component: TestClickEventAndObservableNextComponent,
   },
 ];

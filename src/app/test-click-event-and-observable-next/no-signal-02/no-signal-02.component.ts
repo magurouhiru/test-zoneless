@@ -11,17 +11,17 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CntService } from './cnt.service';
+import { NoSignalBaseComponent } from '../no-signal-base/no-signal-base.component';
+import { CntService } from '../../cnt.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-no-signal-02',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  imports: [NoSignalBaseComponent],
+  templateUrl: './no-signal-02.component.html',
+  styleUrl: './no-signal-02.component.scss',
 })
-export class AppZonelessComponent
+export class NoSignal02Component
   implements
     OnChanges,
     OnInit,
@@ -32,7 +32,7 @@ export class AppZonelessComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'TestZoneless:Zoneless';
+  name = 'no-signal-02';
   label = '';
 
   // ライフサイクル監視
