@@ -9,6 +9,11 @@ export class CntService {
     this.data[label] = getCntObj(label);
   }
   printData() {
+    const tmp: Record<string, CntObj> = {};
+    for (const k of Object.keys(this.data).sort()) {
+      tmp[k] = this.data[k];
+    }
+    this.data = tmp;
     console.table(this.data);
     for (const k of Object.keys(this.data)) {
       const d = this.data[k] as unknown as Record<string, string>;
