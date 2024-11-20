@@ -11,7 +11,7 @@ https://angular.dev/guide/experimental/zoneless
 ### `npm run start`
 withZone とZoneless の両方が`ng serve`されます。   
 以下をブラウザで開いて比較してください。  
-↓withZone
+↓withZone  
 http://localhost:4201
 
 ↓Zoneless  
