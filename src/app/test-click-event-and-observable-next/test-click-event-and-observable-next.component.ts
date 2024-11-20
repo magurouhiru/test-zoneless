@@ -19,10 +19,10 @@ import { CntService } from '../cnt.service';
   selector: 'app-display-all',
   standalone: true,
   imports: [Signal01Component, NoSignal01Component],
-  templateUrl: './check-event-observable.component.html',
-  styleUrl: './check-event-observable.component.scss',
+  templateUrl: './test-click-event-and-observable-next.component.html',
+  styleUrl: './test-click-event-and-observable-next.component.scss',
 })
-export class CheckEventObservableComponent
+export class TestClickEventAndObservableNextComponent
   implements
     OnChanges,
     OnInit,
@@ -33,7 +33,7 @@ export class CheckEventObservableComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'check-event-observable';
+  name = 'test-click-event-and-observable-next';
   label = '';
 
   // ライフサイクル監視

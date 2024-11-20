@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-zoneless_zone": {
+    "test-zoneless_with-zone": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/zone",
+            "outputPath": "dist/with-zone",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "test-zoneless_zone:build:production"
+              "buildTarget": "test-zoneless_with-zone:build:production"
             },
             "development": {
-              "buildTarget": "test-zoneless_zone:build:development"
+              "buildTarget": "test-zoneless_with-zone:build:development"
             }
           },
           "defaultConfiguration": "development"

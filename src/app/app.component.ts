@@ -32,7 +32,7 @@ export class AppComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'TestZoneless:Zone';
+  name = 'TestZoneless:withZone';
   label = '';
 
   // ライフサイクル監視
