@@ -11,18 +11,18 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { take, interval } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
 import { CntService } from '../cnt.service';
+import { SignalComponent } from './signal/signal.component';
+import { NoSignalComponent } from './no-signal/no-signal.component';
 
 @Component({
-  selector: 'app-test-async-pipe',
+  selector: 'app-test-control-flow-syntax',
   standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './test-async-pipe.component.html',
-  styleUrl: './test-async-pipe.component.scss',
+  imports: [SignalComponent, NoSignalComponent],
+  templateUrl: './test-control-flow-syntax.component.html',
+  styleUrl: './test-control-flow-syntax.component.scss',
 })
-export class TestAsyncPipeComponent
+export class TestControlFlowSyntaxComponent
   implements
     OnChanges,
     OnInit,
@@ -33,10 +33,11 @@ export class TestAsyncPipeComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'test-async-pipe';
+  name = 'test-control-flow-syntax';
   label = '';
 
-  interval = interval(1000).pipe(take(5));
+  // 変更検知発火用のクリックイベント
+  click() {}
 
   // ライフサイクル監視
   cntService = inject(CntService);

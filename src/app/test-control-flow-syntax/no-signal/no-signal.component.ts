@@ -11,18 +11,18 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { take, interval } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { CntService } from '../cnt.service';
+import { CntService } from '../../cnt.service';
 
 @Component({
-  selector: 'app-test-async-pipe',
+  selector: 'app-no-signal',
   standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './test-async-pipe.component.html',
-  styleUrl: './test-async-pipe.component.scss',
+  imports: [NgForOf, NgIf, NgSwitchCase, NgSwitch],
+  templateUrl: './no-signal.component.html',
+  styleUrl: './no-signal.component.scss',
 })
-export class TestAsyncPipeComponent
+export class NoSignalComponent
   implements
     OnChanges,
     OnInit,
@@ -33,10 +33,31 @@ export class TestAsyncPipeComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'test-async-pipe';
+  name = 'no-signal';
   label = '';
 
   interval = interval(1000).pipe(take(5));
+
+  // no-signal
+  value = 0;
+  flag = true;
+  array: number[] = [];
+  array_str = '';
+
+  constructor() {
+    this.interval.subscribe({
+      next: (v) => {
+        this.value = v;
+        this.flag = v % 2 === 0;
+        const array = [];
+        for (let i = 0; i < v; i++) array.push(i);
+        this.array = array;
+        this.array_str = JSON.stringify(this.array);
+      },
+      error: console.error,
+      complete: () => console.log('complete'),
+    });
+  }
 
   // ライフサイクル監視
   cntService = inject(CntService);

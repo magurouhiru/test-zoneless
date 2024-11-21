@@ -4,6 +4,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
+  computed,
   DoCheck,
   inject,
   OnChanges,
@@ -11,18 +12,19 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { take, interval } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { CntService } from '../cnt.service';
+import { CntService } from '../../cnt.service';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
-  selector: 'app-test-async-pipe',
+  selector: 'app-signal',
   standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './test-async-pipe.component.html',
-  styleUrl: './test-async-pipe.component.scss',
+  imports: [NgForOf, NgIf, NgSwitchCase, NgSwitch],
+  templateUrl: './signal.component.html',
+  styleUrl: './signal.component.scss',
 })
-export class TestAsyncPipeComponent
+export class SignalComponent
   implements
     OnChanges,
     OnInit,
@@ -33,10 +35,20 @@ export class TestAsyncPipeComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'test-async-pipe';
+  name = 'signal';
   label = '';
 
   interval = interval(1000).pipe(take(5));
+
+  // signal
+  value = toSignal(this.interval, { initialValue: NaN });
+  flag = computed(() => this.value() % 2 === 0);
+  array = computed(() => {
+    const array = [];
+    for (let i = 0; i < this.value(); i++) array.push(i);
+    return array;
+  });
+  array_str = computed(() => JSON.stringify(this.array()));
 
   // ライフサイクル監視
   cntService = inject(CntService);

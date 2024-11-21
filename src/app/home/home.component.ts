@@ -15,5 +15,6 @@ export class HomeComponent {
       label: 'test-click-event-and-observable-next',
     },
     { link: 'test-async-pipe', label: 'test-async-pipe' },
+    { link: 'test-control-flow-syntax', label: 'test-control-flow-syntax' },
   ];
 }
