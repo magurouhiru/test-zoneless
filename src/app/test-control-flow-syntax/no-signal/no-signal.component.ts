@@ -11,18 +11,18 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { CntService } from '../cnt.service';
-import { SignalComponent } from './signal/signal.component';
-import { NoSignalComponent } from './no-signal/no-signal.component';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { take, interval } from 'rxjs';
+import { CntService } from '../../cnt.service';
 
 @Component({
-  selector: 'app-test-control-flow-syntax',
+  selector: 'app-no-signal',
   standalone: true,
-  imports: [SignalComponent, NoSignalComponent],
-  templateUrl: './test-control-flow-syntax.component.html',
-  styleUrl: './test-control-flow-syntax.component.scss',
+  imports: [NgForOf, NgIf, NgSwitchCase, NgSwitch],
+  templateUrl: './no-signal.component.html',
+  styleUrl: './no-signal.component.scss',
 })
-export class TestControlFlowSyntaxComponent
+export class NoSignalComponent
   implements
     OnChanges,
     OnInit,
@@ -33,11 +33,31 @@ export class TestControlFlowSyntaxComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'test-control-flow-syntax';
+  name = 'no-signal';
   label = '';
 
-  // 変更検知発火用のクリックイベント
-  click() {}
+  interval = interval(1000).pipe(take(5));
+
+  // no-signal
+  value = 0;
+  flag = true;
+  array: number[] = [];
+  array_str = '';
+
+  constructor() {
+    this.interval.subscribe({
+      next: (v) => {
+        this.value = v;
+        this.flag = v % 2 === 0;
+        const array = [];
+        for (let i = 0; i < v; i++) array.push(i);
+        this.array = array;
+        this.array_str = JSON.stringify(this.array);
+      },
+      error: console.error,
+      complete: () => console.log('complete'),
+    });
+  }
 
   // ライフサイクル監視
   cntService = inject(CntService);

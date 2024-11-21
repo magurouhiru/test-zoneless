@@ -1,0 +1,67 @@
+<fieldset>
+  <legend>{{ name }} contents</legend>
+  value: {{ value() }}<br />
+  flag: {{ flag() }}<br />
+  array: {{ array_str() }}<br />
+  <fieldset>
+    <legend>*ngXXX</legend>
+    *ngIf:
+    <ng-container *ngIf="flag()">{{ true }}</ng-container
+    ><ng-container *ngIf="!flag()">{{ false }}</ng-container>
+  </fieldset>
+  <fieldset>
+    <legend>*ngXXX</legend>
+    *ngSwitchCase:
+    <ng-container [ngSwitch]="value()">
+      <ng-container *ngSwitchCase="0">0</ng-container>
+      <ng-container *ngSwitchCase="1">1</ng-container>
+      <ng-container *ngSwitchCase="2">2</ng-container>
+      <ng-container *ngSwitchCase="3">3</ng-container>
+      <ng-container *ngSwitchCase="4">4</ng-container>
+    </ng-container>
+  </fieldset>
+  <fieldset>
+    <legend>*ngFor</legend>
+    *ngFor:
+    <ng-container *ngFor="let v of array()">
+      {{ v }}
+    </ng-container>
+  </fieldset>
+  <fieldset>
+    <legend>{{ "@if" }}</legend>
+    {{ "@if" }}:
+    @if (flag()) {
+      {{ true }}
+    } @else {
+      {{ false }}
+    }
+  </fieldset>
+  <fieldset>
+    <legend>{{ "@switch" }}</legend>
+    {{ "@switch" }}:
+    @switch (value()) {
+      @case (0) {
+        {{ 0 }}
+      }
+      @case (1) {
+        {{ 1 }}
+      }
+      @case (2) {
+        {{ 2 }}
+      }
+      @case (3) {
+        {{ 3 }}
+      }
+      @case (4) {
+        {{ 4 }}
+      }
+    }
+  </fieldset>
+  <fieldset>
+    <legend>{{ "@for" }}</legend>
+    {{ "@for" }}:
+    @for (v of array(); track v) {
+      {{ v }}
+    }
+  </fieldset>
+</fieldset>

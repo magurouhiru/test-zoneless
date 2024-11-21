@@ -8,149 +8,20 @@
     </ul>
     <li>Zoneless</li>
     <ul>
-      <li>全コンポーネントのngDoCheck()が発火し、更新された値も表示される。</li>
+      <li>全コンポーネントのngDoCheck()が発火しない。</li>
+      <li>Signal を使用していれば、更新された値が表示される。</li>
+      <li>Signal を使用していなければ、更新された値が表示されない。</li>
+      <button (click)="click()">更新用のボタン</button>
     </ul>
   </ul>
   <h3>簡単な説明</h3>
   ngDoCheck() の発火回数はコンソールに表示される。<br />
-  test-async-pipe.component には以下の機能がある。
+  (no-)signal.component には以下のプロパティがある。
   <ul>
-    <li>
-      AsyncPipe ：interval(1000).pipe(take(5)) の値をAsyncPipe で取得表示。
-    </li>
+    <li>value: interval(1000).pipe(take(5)) の値。</li>
+    <li>flag: interval(1000).pipe(take(5)) の値 % 2 === 0 の真偽値。</li>
+    <li>array: interval(1000).pipe(take(5)) の値をpush した値。</li>
   </ul>
-  <fieldset>
-    <legend>no-signal</legend>
-    value: {{ value }}<br />
-    flag: {{ flag }}<br />
-    array: {{ array_str }}<br />
-    <fieldset>
-      <legend>*ngXXX</legend>
-      *ngIf: <ng-container *ngIf="flag">{{ flag }}</ng-container
-      ><ng-container *ngIf="!flag">{{ flag }}</ng-container>
-    </fieldset>
-    <fieldset>
-      <legend>*ngXXX</legend>
-      *ngSwitchCase:
-      <ng-container [ngSwitch]="value">
-        <ng-container *ngSwitchCase="0">0</ng-container>
-        <ng-container *ngSwitchCase="1">1</ng-container>
-        <ng-container *ngSwitchCase="2">2</ng-container>
-        <ng-container *ngSwitchCase="3">3</ng-container>
-        <ng-container *ngSwitchCase="4">4</ng-container>
-      </ng-container>
-    </fieldset>
-    <fieldset>
-      <legend>*ngFor</legend>
-      *ngFor:
-      <ng-container *ngFor="let v of array">
-        {{ v }}
-      </ng-container>
-    </fieldset>
-    <fieldset>
-      <legend>{{ "@if" }}</legend>
-      {{ "@if" }}:
-      @if (flag) {
-        {{ flag }}
-      } @else {
-        {{ flag }}
-      }
-    </fieldset>
-    <fieldset>
-      <legend>{{ "@switch" }}</legend>
-      {{ "@switch" }}:
-      @switch (value) {
-        @case (0) {
-          {{ 0 }}
-        }
-        @case (1) {
-          {{ 1 }}
-        }
-        @case (2) {
-          {{ 2 }}
-        }
-        @case (3) {
-          {{ 3 }}
-        }
-        @case (4) {
-          {{ 4 }}
-        }
-      }
-    </fieldset>
-    <fieldset>
-      <legend>{{ "@for" }}</legend>
-      {{ "@for" }}:
-      @for (v of array; track v) {
-        {{ v }}
-      }
-    </fieldset>
-  </fieldset>
-
-  <fieldset>
-    <legend>signal</legend>
-    value: {{ value_signal() }}<br />
-    flag: {{ flag_signal() }}<br />
-    array: {{ array_str_signal() }}<br />
-    <fieldset>
-      <legend>*ngXXX</legend>
-      *ngIf:
-      <ng-container *ngIf="flag_signal()">{{ flag_signal() }}</ng-container
-      ><ng-container *ngIf="!flag_signal()">{{ flag_signal() }}</ng-container>
-    </fieldset>
-    <fieldset>
-      <legend>*ngXXX</legend>
-      *ngSwitchCase:
-      <ng-container [ngSwitch]="value_signal()">
-        <ng-container *ngSwitchCase="0">0</ng-container>
-        <ng-container *ngSwitchCase="1">1</ng-container>
-        <ng-container *ngSwitchCase="2">2</ng-container>
-        <ng-container *ngSwitchCase="3">3</ng-container>
-        <ng-container *ngSwitchCase="4">4</ng-container>
-      </ng-container>
-    </fieldset>
-    <fieldset>
-      <legend>*ngFor</legend>
-      *ngFor:
-      <ng-container *ngFor="let v of array_signal()">
-        {{ v }}
-      </ng-container>
-    </fieldset>
-    <fieldset>
-      <legend>{{ "@if" }}</legend>
-      {{ "@if" }}:
-      @if (flag_signal()) {
-        {{ flag_signal() }}
-      } @else {
-        {{ flag_signal() }}
-      }
-    </fieldset>
-    <fieldset>
-      <legend>{{ "@switch" }}</legend>
-      {{ "@switch" }}:
-      @switch (value_signal()) {
-        @case (0) {
-          {{ 0 }}
-        }
-        @case (1) {
-          {{ 1 }}
-        }
-        @case (2) {
-          {{ 2 }}
-        }
-        @case (3) {
-          {{ 3 }}
-        }
-        @case (4) {
-          {{ 4 }}
-        }
-      }
-    </fieldset>
-    <fieldset>
-      <legend>{{ "@for" }}</legend>
-      {{ "@for" }}:
-      @for (v of array_signal(); track v) {
-        {{ v }}
-      }
-    </fieldset>
-  </fieldset>
+  <app-no-signal></app-no-signal>
+  <app-signal></app-signal>
 </fieldset>

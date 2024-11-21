@@ -4,6 +4,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
+  computed,
   DoCheck,
   inject,
   OnChanges,
@@ -11,18 +12,19 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { CntService } from '../cnt.service';
-import { SignalComponent } from './signal/signal.component';
-import { NoSignalComponent } from './no-signal/no-signal.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { take, interval } from 'rxjs';
+import { CntService } from '../../cnt.service';
+import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
-  selector: 'app-test-control-flow-syntax',
+  selector: 'app-signal',
   standalone: true,
-  imports: [SignalComponent, NoSignalComponent],
-  templateUrl: './test-control-flow-syntax.component.html',
-  styleUrl: './test-control-flow-syntax.component.scss',
+  imports: [NgForOf, NgIf, NgSwitchCase, NgSwitch],
+  templateUrl: './signal.component.html',
+  styleUrl: './signal.component.scss',
 })
-export class TestControlFlowSyntaxComponent
+export class SignalComponent
   implements
     OnChanges,
     OnInit,
@@ -33,11 +35,20 @@ export class TestControlFlowSyntaxComponent
     AfterViewChecked,
     OnDestroy
 {
-  name = 'test-control-flow-syntax';
+  name = 'signal';
   label = '';
 
-  // 変更検知発火用のクリックイベント
-  click() {}
+  interval = interval(1000).pipe(take(5));
+
+  // signal
+  value = toSignal(this.interval, { initialValue: NaN });
+  flag = computed(() => this.value() % 2 === 0);
+  array = computed(() => {
+    const array = [];
+    for (let i = 0; i < this.value(); i++) array.push(i);
+    return array;
+  });
+  array_str = computed(() => JSON.stringify(this.array()));
 
   // ライフサイクル監視
   cntService = inject(CntService);
