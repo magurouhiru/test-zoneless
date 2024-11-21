@@ -11,8 +11,6 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { NoSignal01Component } from '../test-click-event-and-observable-next/no-signal-01/no-signal-01.component';
-import { Signal01Component } from '../test-click-event-and-observable-next/signal-01/signal-01.component';
 import { take, interval } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CntService } from '../cnt.service';
@@ -20,7 +18,7 @@ import { CntService } from '../cnt.service';
 @Component({
   selector: 'app-test-async-pipe',
   standalone: true,
-  imports: [NoSignal01Component, Signal01Component, AsyncPipe],
+  imports: [AsyncPipe],
   templateUrl: './test-async-pipe.component.html',
   styleUrl: './test-async-pipe.component.scss',
 })
