@@ -1,0 +1,26 @@
+<fieldset>
+  <legend>{{ name }} contents</legend>
+  <h3>簡単なまとめ</h3>
+  <ul>
+    <li>withZone</li>
+    <ul>
+      <li>全コンポーネントのngDoCheck()が発火し、更新された値も表示される。</li>
+    </ul>
+    <li>Zoneless</li>
+    <ul>
+      <li>全コンポーネントのngDoCheck()が発火し、更新された値も表示される。</li>
+    </ul>
+  </ul>
+  <h3>簡単な説明</h3>
+  ngDoCheck() の発火回数はコンソールに表示される。<br />
+  test-async-pipe.component には以下の機能がある。
+  <ul>
+    <li>
+      AsyncPipe ：interval(1000).pipe(take(5)) の値をAsyncPipe で取得表示。
+    </li>
+  </ul>
+  <fieldset>
+    <legend>AsyncPipe</legend>
+    value: {{ interval | async }}
+  </fieldset>
+</fieldset>
