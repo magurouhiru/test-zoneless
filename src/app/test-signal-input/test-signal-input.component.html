@@ -1,0 +1,33 @@
+<fieldset>
+  <legend>{{ name }} contents</legend>
+  <h3>簡単なまとめ</h3>
+  <ul>
+    <li>withZone</li>
+    <ul>
+      <li>全コンポーネントのngDoCheck()が発火し、更新された値も表示される。</li>
+    </ul>
+    <li>Zoneless</li>
+    <ul>
+      <li>
+        Signal
+        を使用した子コンポーネントのngDoCheck()は発火する。それ以外のコンポーネントは発火しない。
+      </li>
+      <li>Signal を使用していれば、更新された値が表示される。</li>
+      <li>Signal を使用していなければ、更新された値が表示されない。</li>
+      <button (click)="click()">更新用のボタン</button>
+    </ul>
+  </ul>
+  <h3>簡単な説明</h3>
+  ngDoCheck() の発火回数はコンソールに表示される。<br />
+  (no-)signal-parent.component には以下のプロパティがある。
+  <ul>
+    <li>value: interval(1000).pipe(take(5)) の値。</li>
+  </ul>
+  (no-)signal-child.component には以下のプロパティがある。
+  <ul>
+    <li>inputValue: 親コンポーネントから受け取った値。</li>
+    <li>inputValueRequired: 親コンポーネントから受け取った値。(必須)</li>
+  </ul>
+  <app-no-signal-parent></app-no-signal-parent>
+  <app-signal-parent></app-signal-parent>
+</fieldset>

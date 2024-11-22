@@ -1,0 +1,8 @@
+<fieldset>
+  <legend>{{ name }} contents</legend>
+  value(): {{ value() }}<br />
+  <app-signal-child
+    [inputValue]="value()"
+    [inputValueRequired]="value()"
+  ></app-signal-child>
+</fieldset>
