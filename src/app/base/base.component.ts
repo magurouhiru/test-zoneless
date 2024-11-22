@@ -35,36 +35,46 @@ export class BaseComponent
   name = 'base';
 
   // ライフサイクル監視
-  label = '';
   cntService = inject(CntService);
-
+  id!: string;
+  label = '';
   // ラベルプロパティを更新
   // 親コンポーネント名を取得することを考慮してngOnInit()で実行
   setLabel() {
     this.label = this.name;
   }
-  ngOnChanges(changes: SimpleChanges) {}
+  ngOnChanges(changes: SimpleChanges) {
+    // idがundefinedの初回だけID取得
+    if (this.id === undefined) {
+      this.id = this.cntService.getId();
+    }
+    this.cntService.addOnChanges(this.id);
+  }
   ngOnInit() {
+    // idがundefinedの初回だけID取得
+    if (this.id === undefined) {
+      this.id = this.cntService.getId();
+    }
     this.setLabel();
-    this.cntService.setData(this.label);
-    this.cntService.addOnInit(this.label);
+    this.cntService.updateLabel(this.id, this.label);
+    this.cntService.addOnInit(this.id);
   }
   ngDoCheck() {
-    this.cntService.addDoCheck(this.label);
+    this.cntService.addDoCheck(this.id);
   }
   ngAfterContentInit() {
-    this.cntService.addAfterContentInit(this.label);
+    this.cntService.addAfterContentInit(this.id);
   }
   ngAfterContentChecked() {
-    this.cntService.addAfterContentChecked(this.label);
+    this.cntService.addAfterContentChecked(this.id);
   }
   ngAfterViewInit() {
-    this.cntService.addAfterViewInit(this.label);
+    this.cntService.addAfterViewInit(this.id);
   }
   ngAfterViewChecked() {
-    this.cntService.addAfterViewChecked(this.label);
+    this.cntService.addAfterViewChecked(this.id);
   }
   ngOnDestroy() {
-    this.cntService.addOnDestroy(this.label);
+    this.cntService.addOnDestroy(this.id);
   }
 }

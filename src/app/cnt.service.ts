@@ -5,8 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class CntService {
   data: Record<string, CntObj> = {};
-  setData(label: string) {
-    this.data[label] = getCntObj(label);
+  cntId = 0;
+  getId() {
+    const id = String(this.cntId++);
+    this.data[id] = getCntObj();
+    return id;
   }
   printData() {
     const tmp: Record<string, CntObj> = {};
@@ -23,45 +26,48 @@ export class CntService {
       this.data[k] = d as unknown as CntObj;
     }
   }
-  addOnChanges(label: string) {
-    const cnt = Number(this.data[label].cntOnChanges) + 1;
-    this.data[label].cntOnChanges = cnt + MARK;
+  addOnChanges(id: string) {
+    const cnt = Number(this.data[id].cntOnChanges) + 1;
+    this.data[id].cntOnChanges = cnt + MARK;
     this.printData();
   }
-  addOnInit(label: string) {
-    const cnt = Number(this.data[label].cntOnInit) + 1;
-    this.data[label].cntOnInit = cnt + MARK;
+  addOnInit(id: string) {
+    const cnt = Number(this.data[id].cntOnInit) + 1;
+    this.data[id].cntOnInit = cnt + MARK;
     this.printData();
   }
-  addDoCheck(label: string) {
-    const cnt = Number(this.data[label].cntDoCheck) + 1;
-    this.data[label].cntDoCheck = cnt + MARK;
+  addDoCheck(id: string) {
+    const cnt = Number(this.data[id].cntDoCheck) + 1;
+    this.data[id].cntDoCheck = cnt + MARK;
     this.printData();
   }
-  addAfterContentInit(label: string) {
-    const cnt = Number(this.data[label].cntAfterContentInit) + 1;
-    this.data[label].cntAfterContentInit = cnt + MARK;
+  addAfterContentInit(id: string) {
+    const cnt = Number(this.data[id].cntAfterContentInit) + 1;
+    this.data[id].cntAfterContentInit = cnt + MARK;
     this.printData();
   }
-  addAfterContentChecked(label: string) {
-    const cnt = Number(this.data[label].cntAfterContentChecked) + 1;
-    this.data[label].cntAfterContentChecked = cnt + MARK;
+  addAfterContentChecked(id: string) {
+    const cnt = Number(this.data[id].cntAfterContentChecked) + 1;
+    this.data[id].cntAfterContentChecked = cnt + MARK;
     this.printData();
   }
-  addAfterViewInit(label: string) {
-    const cnt = Number(this.data[label].cntAfterViewInit) + 1;
-    this.data[label].cntAfterViewInit = cnt + MARK;
+  addAfterViewInit(id: string) {
+    const cnt = Number(this.data[id].cntAfterViewInit) + 1;
+    this.data[id].cntAfterViewInit = cnt + MARK;
     this.printData();
   }
-  addAfterViewChecked(label: string) {
-    const cnt = Number(this.data[label].cntAfterViewChecked) + 1;
-    this.data[label].cntAfterViewChecked = cnt + MARK;
+  addAfterViewChecked(id: string) {
+    const cnt = Number(this.data[id].cntAfterViewChecked) + 1;
+    this.data[id].cntAfterViewChecked = cnt + MARK;
     this.printData();
   }
-  addOnDestroy(label: string) {
-    const cnt = Number(this.data[label].cntOnDestroy) + 1;
-    this.data[label].cntOnDestroy = cnt + MARK;
+  addOnDestroy(id: string) {
+    const cnt = Number(this.data[id].cntOnDestroy) + 1;
+    this.data[id].cntOnDestroy = cnt + MARK;
     this.printData();
+  }
+  updateLabel(id: string, label: string) {
+    this.data[id].label = label;
   }
 }
 
@@ -77,10 +83,10 @@ export interface CntObj {
   cntOnDestroy: string;
 }
 
-export function getCntObj(label: string) {
+export function getCntObj() {
   return {
-    label: label,
-    cntOnChanges: '',
+    label: '',
+    cntOnChanges: '0',
     cntOnInit: '0',
     cntDoCheck: '0',
     cntAfterContentInit: '0',
