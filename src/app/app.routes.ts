@@ -3,6 +3,7 @@ import { TestClickEventAndObservableNextComponent } from './test-click-event-and
 import { TestAsyncPipeComponent } from './test-async-pipe/test-async-pipe.component';
 import { HomeComponent } from './home/home.component';
 import { TestControlFlowSyntaxComponent } from './test-control-flow-syntax/test-control-flow-syntax.component';
+import { TestSignalInputComponent } from './test-signal-input/test-signal-input.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'test-control-flow-syntax',
     component: TestControlFlowSyntaxComponent,
+  },
+  {
+    path: 'test-signal-input',
+    component: TestSignalInputComponent,
   },
 ];

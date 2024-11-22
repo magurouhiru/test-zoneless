@@ -16,5 +16,6 @@ export class HomeComponent {
     },
     { link: 'test-async-pipe', label: 'test-async-pipe' },
     { link: 'test-control-flow-syntax', label: 'test-control-flow-syntax' },
+    { link: 'test-signal-input', label: 'test-signal-input' },
   ];
 }
