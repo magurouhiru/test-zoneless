@@ -1,8 +1,11 @@
-コンテンツはこちら
-<ul>
-  @for (link of links; track link.link) {
-    <li>
-      <a [routerLink]="link.link">{{ link.label }}</a>
-    </li>
-  }
-</ul>
+<fieldset>
+  <legend>{{ name }} contents</legend>
+  コンテンツはこちら
+  <ul>
+    @for (link of links; track link.link) {
+      <li>
+        <a [routerLink]="link.link">{{ link.label }}</a>
+      </li>
+    }
+  </ul>
+</fieldset>

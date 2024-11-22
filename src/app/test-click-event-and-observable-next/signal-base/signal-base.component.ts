@@ -17,6 +17,7 @@ import {
 import { CntService } from '../../cnt.service';
 import { interval, take } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-signal-base',
@@ -25,19 +26,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './signal-base.component.html',
   styleUrl: './signal-base.component.scss',
 })
-export class SignalBaseComponent
-  implements
-    OnChanges,
-    OnInit,
-    DoCheck,
-    AfterContentInit,
-    AfterContentChecked,
-    AfterViewInit,
-    AfterViewChecked,
-    OnDestroy
-{
-  name = signal('signal-base');
-  label = computed(() => this.name() + ':' + this.parentName());
+export class SignalBaseComponent extends BaseComponent {
+  override name = 'signal-base';
   // インプット
   parentName = input.required<string>();
 
@@ -50,28 +40,7 @@ export class SignalBaseComponent
   value = toSignal(this.interval);
 
   // ライフサイクル監視
-  cntService = inject(CntService);
-  ngOnChanges(changes: SimpleChanges) {}
-  ngOnInit() {
-    this.cntService.setData(this.label());
-    this.cntService.addOnInit(this.label());
-  }
-  ngDoCheck() {
-    this.cntService.addDoCheck(this.label());
-  }
-  ngAfterContentInit() {
-    this.cntService.addAfterContentInit(this.label());
-  }
-  ngAfterContentChecked() {
-    this.cntService.addAfterContentChecked(this.label());
-  }
-  ngAfterViewInit() {
-    this.cntService.addAfterViewInit(this.label());
-  }
-  ngAfterViewChecked() {
-    this.cntService.addAfterViewChecked(this.label());
-  }
-  ngOnDestroy() {
-    this.cntService.addOnDestroy(this.label());
+  override setLabel() {
+    this.label = this.name + ':' + this.parentName();
   }
 }

@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { CntService } from '../../cnt.service';
 import { interval, take } from 'rxjs';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-no-signal-base',
@@ -22,19 +23,8 @@ import { interval, take } from 'rxjs';
   templateUrl: './no-signal-base.component.html',
   styleUrl: './no-signal-base.component.scss',
 })
-export class NoSignalBaseComponent
-  implements
-    OnChanges,
-    OnInit,
-    DoCheck,
-    AfterContentInit,
-    AfterContentChecked,
-    AfterViewInit,
-    AfterViewChecked,
-    OnDestroy
-{
-  name = 'no-signal-base';
-  label = '';
+export class NoSignalBaseComponent extends BaseComponent {
+  override name = 'no-signal-base';
   // インプット
   @Input() parentName = '';
 
@@ -46,6 +36,7 @@ export class NoSignalBaseComponent
   interval = interval(1000).pipe(take(5));
   value = 0;
   constructor() {
+    super();
     this.interval.subscribe({
       next: (v) => {
         this.value = v;
@@ -56,29 +47,7 @@ export class NoSignalBaseComponent
   }
 
   // ライフサイクル監視
-  cntService = inject(CntService);
-  ngOnChanges(changes: SimpleChanges) {}
-  ngOnInit() {
+  override setLabel() {
     this.label = this.name + ':' + this.parentName;
-    this.cntService.setData(this.label);
-    this.cntService.addOnInit(this.label);
-  }
-  ngDoCheck() {
-    this.cntService.addDoCheck(this.label);
-  }
-  ngAfterContentInit() {
-    this.cntService.addAfterContentInit(this.label);
-  }
-  ngAfterContentChecked() {
-    this.cntService.addAfterContentChecked(this.label);
-  }
-  ngAfterViewInit() {
-    this.cntService.addAfterViewInit(this.label);
-  }
-  ngAfterViewChecked() {
-    this.cntService.addAfterViewChecked(this.label);
-  }
-  ngOnDestroy() {
-    this.cntService.addOnDestroy(this.label);
   }
 }
