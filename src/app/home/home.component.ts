@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent extends BaseComponent {
+  override name = 'home';
   links: { link: string; label: string }[] = [
     {
       link: 'test-click-event-and-observable-next',
