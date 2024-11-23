@@ -26,6 +26,11 @@ export class CntService {
       this.data[k] = d as unknown as CntObj;
     }
   }
+  addConstructor(id: string) {
+    const cnt = Number(this.data[id].cntConstructor) + 1;
+    this.data[id].cntConstructor = cnt + MARK;
+    this.printData();
+  }
   addOnChanges(id: string) {
     const cnt = Number(this.data[id].cntOnChanges) + 1;
     this.data[id].cntOnChanges = cnt + MARK;
@@ -73,6 +78,7 @@ export class CntService {
 
 export interface CntObj {
   label: string;
+  cntConstructor: string;
   cntOnChanges: string;
   cntOnInit: string;
   cntDoCheck: string;
@@ -86,6 +92,7 @@ export interface CntObj {
 export function getCntObj() {
   return {
     label: '',
+    cntConstructor: '0',
     cntOnChanges: '0',
     cntOnInit: '0',
     cntDoCheck: '0',

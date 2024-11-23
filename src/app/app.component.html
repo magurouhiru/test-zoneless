@@ -1,2 +1,26 @@
 <h1>{{ name }}</h1>
 <router-outlet />
+<fieldset>
+  <legend>共通的な説明</legend>
+  すべてのコンポーネントは、以下のライフサイクルメソッドの発火回数をconsole
+  に出力します。
+  <ul>
+    <li>constructor</li>
+    <li>ngOnInit</li>
+    <li>ngOnChanges</li>
+    <li>ngDoCheck</li>
+    <li>ngAfterContentInit</li>
+    <li>ngAfterContentChecked</li>
+    <li>ngAfterViewInit</li>
+    <li>ngAfterViewChecked</li>
+    <li>ngOnDestroy</li>
+  </ul>
+  詳細はこちらをご覧ください。
+  <ul>
+    <li>
+      <a href="https://v18.angular.jp/guide/components/lifecycle"
+        >Angular のライフサイクルメソッドについて</a
+      >
+    </li>
+  </ul>
+</fieldset>

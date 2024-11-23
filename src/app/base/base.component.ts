@@ -35,6 +35,10 @@ export class BaseComponent
   name = 'base';
 
   // ライフサイクル監視
+  constructor() {
+    this.id = this.cntService.getId();
+    this.cntService.addConstructor(this.id);
+  }
   cntService = inject(CntService);
   id!: string;
   label = '';
@@ -44,17 +48,9 @@ export class BaseComponent
     this.label = this.name;
   }
   ngOnChanges(changes: SimpleChanges) {
-    // idがundefinedの初回だけID取得
-    if (this.id === undefined) {
-      this.id = this.cntService.getId();
-    }
     this.cntService.addOnChanges(this.id);
   }
   ngOnInit() {
-    // idがundefinedの初回だけID取得
-    if (this.id === undefined) {
-      this.id = this.cntService.getId();
-    }
     this.setLabel();
     this.cntService.updateLabel(this.id, this.label);
     this.cntService.addOnInit(this.id);
